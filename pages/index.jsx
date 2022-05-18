@@ -96,7 +96,7 @@ export default function Home() {
         </div>
 
         <div className='my-6 flex justify-center'>
-          <button className='btn-primary'>Lihat Semua</button>
+          <button className='btn-primary mx-2'>Lihat Semua</button>
         </div>
       </div>
       <div className='bg-teal-600 h-72 mb-10 flex justify-center'>

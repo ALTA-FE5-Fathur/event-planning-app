@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 .btn-primary {
-    @apply bg-teal-600 hover:bg-teal-400 text-slate-200 rounded-md py-1 px-3 mx-2 transition-all;
+    @apply bg-teal-600 hover:bg-teal-400 text-slate-200 rounded-md py-1 px-3 transition-all;
 }
