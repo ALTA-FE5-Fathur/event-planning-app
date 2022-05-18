@@ -5,23 +5,23 @@ function CreateEvent() {
                 <h2 className="text-4xl font-bold mb-5 text-slate-700">Create Event</h2>
 
                 <label htmlFor="eventName">Event Name</label>
-                <input type="text" name="eventName" id="eventName" placeholder="Name" className="px-5 border border-slate-400 rounded-xl w-full my-2 py-0.5" />
+                <input type="text" name="eventName" id="eventName" placeholder="Name" className="input-create" />
 
                 <label htmlFor="price">Tiket Price</label>
-                <input type="number" name="price" id="price" placeholder="Price" className="px-5 border border-slate-400 rounded-xl w-full my-2 py-0.5" />
+                <input type="number" name="price" id="price" placeholder="Price" className="input-create" />
 
                 <label htmlFor="dateStart">Start</label>
                 <div className="flex">
-                    <input type="date" name="dateStart" id="dateStart" className="px-5 border border-slate-400 rounded-xl w-full my-2 py-0.5" />
+                    <input type="date" name="dateStart" id="dateStart" className="input-create" />
                     <h3 className="mx-3"> - </h3>
-                    <input type="time" name="dateStart" id="dateStart" className="px-5 border border-slate-400 rounded-xl w-full my-2 py-0.5" />
+                    <input type="time" name="dateStart" id="dateStart" className="input-create" />
                 </div>
 
                 <label htmlFor="dateEnd">End</label>
                 <div className="flex">
-                    <input type="date" name="dateEnd" id="dateEnd" className="px-5 border border-slate-400 rounded-xl w-full my-2 py-0.5" />
+                    <input type="date" name="dateEnd" id="dateEnd" className="input-create" />
                     <h3 className="mx-3"> - </h3>
-                    <input type="time" name="dateEnd" id="dateEnd" className="px-5 border border-slate-400 rounded-xl w-full my-2 py-0.5" />
+                    <input type="time" name="dateEnd" id="dateEnd" className="input-create" />
                 </div>
 
                 <label htmlFor="formFile">Image</label>
