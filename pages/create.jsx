@@ -2,6 +2,8 @@ function CreateEvent() {
     return (
         <>
             <div className='container mx-auto px-5 lg:px-36 xl:px-56 2xl:px-80'>
+                <h2 className="text-4xl font-bold mb-5 text-slate-700">Create Event</h2>
+
                 <label htmlFor="eventName">Event Name</label>
                 <input type="text" name="eventName" id="eventName" placeholder="Name" className="px-5 border border-slate-400 rounded-xl w-full my-2 py-0.5" />
 
