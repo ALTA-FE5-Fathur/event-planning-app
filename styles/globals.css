@@ -5,3 +5,7 @@
 .btn-primary {
     @apply bg-teal-600 hover:bg-teal-400 text-slate-200 rounded-md py-1 px-3 transition-all;
 }
+
+.input-create {
+    @apply px-5 border border-slate-400 rounded-xl w-full my-2 py-0.5;
+}
