@@ -5,7 +5,12 @@ function NavbarComponent() {
     <>
       <div className='container mx-auto my-3'>
         <div className='flex items-center justify-between relative'>
-          <Image src='/logo.png' height={50} width={50} className="cursor-pointer lg:hidden" />
+          <div className="lg:hidden">
+            <Image src='/logo.png' height={50} width={50} className="cursor-pointer lg:hidden" />
+          </div>
+          <div className="hidden lg:block">
+            <Image src='/logo-full.png' height={50} width={127} className="cursor-pointer" />
+          </div>
           <div className="grow flex mx-3">
             <input type="text" className="border rounded-full pl-2 w-full grow" placeholder="Search" />
             <input type="text" className="border rounded-full pl-2 mx-3 w-96 hidden lg:inline" placeholder="Location" />
