@@ -1,99 +1,78 @@
 import HeadApp from '../components/HeadApp';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import moment from 'moment';
+import 'moment/locale/id';
+import Link from 'next/link';
 
 
 export default function Home() {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch('http://54.179.1.246:8100/events');
+      const dataPosts = await res.json();
+
+      setPosts(dataPosts.data);
+    }
+
+    fetchData()
+      .catch(console.error)
+
+  }, []);
+
+  const makeRupiah = (rupiah) => {
+    let text = rupiah.toString();
+    let result = '';
+    for (let i = text.length - 1; i >= 0; i--) {
+      result += text[i];
+      if (i % 3 === 0 && i !== 0) {
+        result += '.';
+      }
+    }
+    return result.split("").reverse().join("");
+  }
+
   return (
     <>
       <div className='container mx-auto'>
         <HeadApp title="Home" />
 
         {/* Dekstop */}
-        <div>
-          <div className='px-10 my-5 lg:flex justify-evenly items-center hidden'>
-            <div className='w-96 mr-10'>
-              <Image src='/musicgallery.jpg' width={450} height={225} />
+        {posts.map((el, i) => (
+          <div key={i}>
+            <div className='px-10 my-5 lg:flex justify-evenly items-center hidden'>
+              <div className='w-96 mr-10'>
+                <Image src={el.image} width={450} height={225} />
+              </div>
+              <div>
+                <Link href={`/detail/${el.id}`}>
+                  <h3 className='font-bold text-2xl capitalize cursor-pointer'>{el.name}</h3>
+                </Link>
+                <h4 className='text-md font-semibold text-slate-500 capitalize'>{moment(el.date_start).format("DD MMM YYYY")}  -  {el.location}</h4>
+                <h3 className='font-bold text-2xl text-right'>Rp{makeRupiah(el.price)}</h3>
+              </div>
             </div>
-            <div>
-              <h3 className='font-bold text-lg'>The 12th Music Gallery : Unity on Stage brought to you by Ternak Uang</h3>
-              <h4 className='text-md font-semibold text-slate-500'>21 May 2022  -  BSO Band FEB UI</h4>
-              <h3 className='font-bold text-2xl text-right'>Rp195.000</h3>
-            </div>
-          </div>
-          <hr className='hidden lg:block' />
-          <div className='px-10 my-5 lg:flex justify-evenly items-center hidden'>
-            <div className='w-96 mr-10'>
-              <Image src='/musicgallery.jpg' width={450} height={225} />
-            </div>
-            <div>
-              <h3 className='font-bold text-lg'>The 12th Music Gallery : Unity on Stage brought to you by Ternak Uang</h3>
-              <h4 className='text-md font-semibold text-slate-500'>21 May 2022  -  BSO Band FEB UI</h4>
-              <h3 className='font-bold text-2xl text-right'>Rp195.000</h3>
-            </div>
-          </div>
-          <hr className='hidden lg:block' />
-          <div className='px-10 my-5 lg:flex justify-evenly items-center hidden'>
-            <div className='w-96 mr-10'>
-              <Image src='/musicgallery.jpg' width={450} height={225} />
-            </div>
-            <div>
-              <h3 className='font-bold text-lg'>The 12th Music Gallery : Unity on Stage brought to you by Ternak Uang</h3>
-              <h4 className='text-md font-semibold text-slate-500'>21 May 2022  -  BSO Band FEB UI</h4>
-              <h3 className='font-bold text-2xl text-right'>Rp195.000</h3>
-            </div>
-          </div>
-          <hr className='hidden lg:block' />
-          <div className='px-10 my-5 lg:flex justify-evenly items-center hidden'>
-            <div className='w-96 mr-10'>
-              <Image src='/musicgallery.jpg' width={450} height={225} />
-            </div>
-            <div>
-              <h3 className='font-bold text-lg'>The 12th Music Gallery : Unity on Stage brought to you by Ternak Uang</h3>
-              <h4 className='text-md font-semibold text-slate-500'>21 May 2022  -  BSO Band FEB UI</h4>
-              <h3 className='font-bold text-2xl text-right'>Rp195.000</h3>
-            </div>
-          </div>
-          <hr className='hidden lg:block' />
-          
-        </div>
+            <hr className='hidden lg:block' />
 
-        {/* Mobile Device */}
-        <div className='px-5 sm:flex sm:flex-wrap sm:justify-center lg:hidden'>
-          <div className='rounded-xl shadow-lg overflow-hidden mb-5 max-w-[28rem] sm:w-[18rem] mx-auto'>
-            <Image src='/musicgallery.jpg' width={450} height={225} />
-            <div className='px-5 py-3'>
-              <h3 className='font-bold text-center text-lg'>The 12th Music Gallery : Unity on Stage brought to you by Ternak Uang</h3>
-              <h4 className='text-md font-semibold text-slate-500 text-center'>21 May 2022  -  BSO Band FEB UI</h4>
-              <h3 className='font-bold text-2xl text-right'>Rp195.000</h3>
-            </div>
-          </div>
-          <div className='rounded-xl shadow-lg overflow-hidden mb-5 max-w-[28rem] sm:w-[18rem] mx-auto'>
-            <Image src='/musicgallery.jpg' width={450} height={225} />
-            <div className='px-5 py-3'>
-              <h3 className='font-bold text-center text-lg'>The 12th Music Gallery : Unity on Stage brought to you by Ternak Uang</h3>
-              <h4 className='text-md font-semibold text-slate-500 text-center'>21 May 2022  -  BSO Band FEB UI</h4>
-              <h3 className='font-bold text-2xl text-right'>Rp195.000</h3>
-            </div>
-          </div>
-          <div className='rounded-xl shadow-lg overflow-hidden mb-5 max-w-[28rem] sm:w-[18rem] mx-auto'>
-            <Image src='/musicgallery.jpg' width={450} height={225} />
-            <div className='px-5 py-3'>
-              <h3 className='font-bold text-center text-lg'>The 12th Music Gallery : Unity on Stage brought to you by Ternak Uang</h3>
-              <h4 className='text-md font-semibold text-slate-500 text-center'>21 May 2022  -  BSO Band FEB UI</h4>
-              <h3 className='font-bold text-2xl text-right'>Rp195.000</h3>
-            </div>
-          </div>
-          <div className='rounded-xl shadow-lg overflow-hidden mb-5 max-w-[28rem] sm:w-[18rem] mx-auto'>
-            <Image src='/musicgallery.jpg' width={450} height={225} />
-            <div className='px-5 py-3'>
-              <h3 className='font-bold text-center text-lg'>The 12th Music Gallery : Unity on Stage brought to you by Ternak Uang</h3>
-              <h4 className='text-md font-semibold text-slate-500 text-center'>21 May 2022  -  BSO Band FEB UI</h4>
-              <h3 className='font-bold text-2xl text-right'>Rp195.000</h3>
-            </div>
-          </div>
-          
 
-        </div>
+            {/* Mobile Device */}
+            <div className='px-5 sm:flex sm:flex-wrap sm:justify-center lg:hidden'>
+              <Link href={`/detail/${el.id}`}>
+                <div className='rounded-xl shadow-lg overflow-hidden mb-5 max-w-[28rem] sm:w-[18rem] mx-auto cursor-pointer'>
+                  <Image src={el.image} width={450} height={225} />
+                  <div className='px-5 py-3'>
+                    <h3 className='font-bold text-center text-lg capitalize'>{el.name}</h3>
+                    <h4 className='text-md font-semibold text-slate-500 text-center'>{moment(el.date_start).format("DD MMM YYYY")}  -  {el.location}</h4>
+                    <h3 className='font-bold text-2xl text-right'>Rp{makeRupiah(el.price)}</h3>
+                  </div>
+                </div>
+              </Link>
+
+            </div>
+          </div>
+        ))}
 
         <div className='my-6 flex justify-center'>
           <button className='btn-primary mx-2'>Lihat Semua</button>
