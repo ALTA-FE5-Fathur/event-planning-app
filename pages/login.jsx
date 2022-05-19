@@ -33,7 +33,8 @@ function Login() {
 
         const dataLogin = await res.json();
 
-        jsCookie.set('token', dataLogin.data.token);
+        localStorage.setItem('token', dataLogin.data.token);
+
 
         setIsLoading(false);
 

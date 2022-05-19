@@ -33,8 +33,6 @@ function Register() {
             return setIsLoading(false);
         };
 
-        const dataRegister = await res.json();
-
         setIsLoading(false);
         router.push('/');
 
