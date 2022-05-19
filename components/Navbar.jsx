@@ -1,15 +1,21 @@
-import Image from "next/image"
+import Image from "next/image";
+import Link from "next/link";
 
 function NavbarComponent() {
+
   return (
     <>
       <div className='container mx-auto my-3'>
         <div className='flex items-center justify-between relative'>
-          <div className="lg:hidden">
-            <Image src='/logo.png' height={50} width={50} className="cursor-pointer lg:hidden" />
+          <div className="lg:hidden" >
+            <Link href='/'>
+              <Image src='/logo.png' height={50} width={50} className="cursor-pointer lg:hidden" />
+            </Link>
           </div>
           <div className="hidden lg:block">
-            <Image src='/logo-full.png' height={50} width={127} className="cursor-pointer" />
+            <Link href='/'>
+              <Image src='/logo-full.png' height={50} width={127} className="cursor-pointer" />
+            </Link>
           </div>
           <div className="grow flex mx-3">
             <input type="text" className="border rounded-full pl-2 w-full grow" placeholder="Search" />

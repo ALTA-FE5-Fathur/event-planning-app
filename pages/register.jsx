@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 
 import Image from 'next/image'
+import { useRouter } from 'next/router';
 
 function Register() {
+    const router = useRouter();
     const [fields, setFields] = useState({
         username: "",
         name: "",
         email: "",
         hp: "",
-        password: "",
-        role: 1
+        password: ""
     });
     const [isLoading, setIsLoading] = useState(false);
     const [message, setMessage] = useState(null);
@@ -19,7 +20,7 @@ function Register() {
 
         setIsLoading(true)
 
-        const res = await fetch('http://54.179.1.246:8000/register', {
+        const res = await fetch('http://54.179.1.246:8100/register', {
             method: 'POST',
             body: JSON.stringify(fields),
             headers: {
@@ -35,6 +36,7 @@ function Register() {
         const dataRegister = await res.json();
 
         setIsLoading(false);
+        router.push('/');
 
     }
 
