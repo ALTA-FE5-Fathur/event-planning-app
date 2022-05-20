@@ -1,13 +1,27 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 function NavbarComponent() {
   const router = useRouter();
+  const [login, setLogin] = useState();
+
+  useEffect(() => {
+    setLogin(localStorage.getItem('token'));
+  })
 
   return (
     <>
       <div className='container mx-auto my-3'>
+        {!login ? '' :
+          <div className="flex justify-end">
+            <button className="font-semibold text-slate-600" onClick={() => {
+              localStorage.clear();
+              router.push('/');
+            }}>Logout</button>
+          </div>
+        }
         <div className='flex items-center justify-between relative'>
           <div className="lg:hidden" >
             <Link href='/' passHref>
@@ -25,7 +39,7 @@ function NavbarComponent() {
           </div>
           <div className="grow flex mx-3">
             <input type="text" className="border rounded-full pl-2 w-full grow" placeholder="Search" />
-            <input type="text" className="border rounded-full pl-2 mx-3 w-96 hidden lg:inline" placeholder="Location" />
+            <input type="text" className="border rounded-full pl-2 mx-3 w-96 hidden" placeholder="Location" />
             <button className="btn-primary mx-2">Search</button>
           </div>
           <Image src='/Plus.png' height={40} width={40} className="cursor-pointer" onClick={() => {

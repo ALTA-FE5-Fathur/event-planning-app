@@ -34,7 +34,7 @@ function Register() {
         };
 
         setIsLoading(false);
-        router.push('/');
+        router.push('/login');
 
     }
 
@@ -55,7 +55,7 @@ function Register() {
                     <span className="block sm:inline">{message}</span>
                 </div>}
 
-                <div className='text-center mb-5 mt-24'>
+                <div className='text-center mb-5 mt-18'>
                     <Image src="/logo-full.png" width={300} height={125} />
                 </div>
                 <h3 className='text-center text-slate-400'>Punya akun TiketKita? <span className='font-bold text-teal-400 cursor-pointer' onClick={() => {

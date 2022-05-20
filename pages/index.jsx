@@ -4,10 +4,13 @@ import { useEffect, useState } from 'react';
 import moment from 'moment';
 import 'moment/locale/id';
 import Link from 'next/link';
+import { useRouter } from "next/router";
 
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
+
+  const router = useRouter();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -100,7 +103,9 @@ export default function Home() {
           <h2 className='text-2xl lg:text-4xl font-bold'>Bingung caranya buat Event?</h2>
           <h2 className='text-xl lg:text-4xl font-bold'>Kunjungi web TiketKita.</h2>
           <p>Ayo bergabung bersama kami dan buatlah event menarik di TiketKita. Mulai dari pengadaan event, pengembangan event secara profesional, hingga pemasaran dan penjualan tiket.</p>
-          <button className='bg-orange-600 hover:bg-orange-500 text-slate-200 rounded-md py-1 px-3 my-2 transition-all'>Buat Event</button>
+          <button className='bg-orange-600 hover:bg-orange-500 text-slate-200 rounded-md py-1 px-3 my-2 transition-all' onClick={() => {
+            router.push('/create')
+          }}>Buat Event</button>
         </div>
       </div>
     </>
