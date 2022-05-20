@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react"
 import HeadApp from "../components/HeadApp";
+import { useRouter } from 'next/router';
 
 function CreateEvent() {
+    const router = useRouter();
     const [fields, setFields] = useState({
         name: '',
         date_start: '',
@@ -9,7 +11,7 @@ function CreateEvent() {
         location: '',
         details: '',
         ticket: '',
-        category_id: 0,
+        category_id: 1,
         file: '',
         hosted_by: '',
         price: 0
@@ -34,8 +36,29 @@ function CreateEvent() {
     }, []);
 
 
-    const createHandler = () => {
+    const createHandler = async (e) => {
+        e.preventDefault();
         let formData = new FormData();
+        formData.append("name", fields.name);
+        formData.append("date_start", fields.date_start);
+        formData.append("date_end", fields.date_end);
+        formData.append("location", fields.location);
+        formData.append("details", fields.details);
+        formData.append("ticket", fields.ticket);
+        formData.append("category_id", fields.category_id);
+        formData.append("file", fields.file);
+        formData.append("hosted_by", fields.hosted_by);
+        formData.append("price", fields.price);
+
+        const res = await fetch('http://54.179.1.246:8100/admin/events', {
+            body: formData,
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        });
+
+        router.push('/');
 
     }
 
@@ -46,13 +69,11 @@ function CreateEvent() {
             ...fields,
             [dataName]: e.target.value
         });
-
-        console.log(fields);
     }
 
     return (
         <>
-        <HeadApp title='Create' />
+            <HeadApp title='Create' />
             <div className='container mx-auto px-5 lg:px-36 xl:px-56 2xl:px-80'>
                 <h2 className="text-4xl font-bold mb-5 text-slate-700">Create Event</h2>
 
@@ -79,7 +100,7 @@ function CreateEvent() {
                     <label htmlFor="category">Category</label>
                     <div className="flex">
                         <div className="w-60">
-                            <select name="category_id" className="form-select input-create" aria-label="Default select example" defaultValue={'DEFAULT'} onChange={fieldHandler.bind(this)} >
+                            <select name="category_id" className="form-select input-create" aria-label="Default select example" defaultValue={'DEFAULT'} >
                                 <option value="DEFAULT" disabled>Open this select menu</option>
                                 {categories.map((el, i) => (
                                     <option key={i} value={el.Name} className="capitalize">{el.Name.charAt(0).toUpperCase() + el.Name.slice(1)}</option>
