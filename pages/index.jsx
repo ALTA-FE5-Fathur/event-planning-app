@@ -42,11 +42,25 @@ export default function Home() {
         {/* Dekstop */}
         {posts.map((el, i) => (
           <div key={i}>
-            <div className='px-10 my-5 lg:flex justify-evenly items-center hidden'>
+            {/* <div className='px-10 my-5 lg:flex justify-evenly items-center hidden'>
               <div className='w-96 mr-10'>
                 <Image src={el.image} width={450} height={225} />
               </div>
               <div>
+                <Link href={`/detail/${el.id}`}>
+                  <h3 className='font-bold text-2xl capitalize cursor-pointer'>{el.name}</h3>
+                </Link>
+                <h4 className='text-md font-semibold text-slate-500 capitalize'>{moment(el.date_start).format("DD MMM YYYY")}  -  {el.location}</h4>
+                <h3 className='font-bold text-2xl text-right'>Rp{makeRupiah(el.price)}</h3>
+              </div>
+            </div>
+            <hr className='hidden lg:block' /> */}
+
+            <div className='px-10 my-5 lg:grid lg:grid-cols-2 hidden'>
+              <div className='w-96 mr-10'>
+                <Image src={el.image} width={450} height={225} />
+              </div>
+              <div className='my-auto'>
                 <Link href={`/detail/${el.id}`}>
                   <h3 className='font-bold text-2xl capitalize cursor-pointer'>{el.name}</h3>
                 </Link>
@@ -74,9 +88,9 @@ export default function Home() {
           </div>
         ))}
 
-        <div className='my-6 flex justify-center'>
+        {/* <div className='my-6 flex justify-center'>
           <button className='btn-primary mx-2'>Lihat Semua</button>
-        </div>
+        </div> */}
       </div>
       <div className='bg-teal-600 h-72 mb-10 flex justify-center'>
         <div className='overflow-hidden'>

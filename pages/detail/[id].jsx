@@ -33,14 +33,15 @@ function Detail() {
 
     const handleBuy = async () => {
         const eId = parseInt(eventId);
+        const bodyContent = {
+            event_id: eId,
+            payment_type: payment,
+            total
+        }
 
         const res = await fetch('http://54.179.1.246:8100/events/orders', {
             method: 'POST',
-            body: {
-                event_id: eId,
-                payment_type: payment,
-                total
-            },
+            body: JSON.stringify(bodyContent),
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -51,7 +52,7 @@ function Detail() {
 
         const dataBuy = await res.json();
 
-        console.log(dataBuy);
+        router.push(dataBuy.data.payment_simulator);
     }
 
     const makeRupiah = (rupiah) => {
@@ -112,6 +113,7 @@ function Detail() {
             </div>
             <hr className="my-5" />
 
+            {/* Akan muncul setelah tekan tombol Buy Tiket */}
             <div className="bg-black bg-opacity-50 absolute inset-0 hidden justify-center items-center" id="overlay">
                 <div className="bg-gray-200 max-w-sm py-2 px-3 rounded-lg shadow-xl text-gray-800">
                     <div className="flex justify-between items-center mb-3">
