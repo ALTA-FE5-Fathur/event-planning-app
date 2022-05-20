@@ -57,7 +57,9 @@ function Register() {
                 <div className='text-center mb-5 mt-24'>
                     <Image src="/logo-full.png" width={300} height={125} />
                 </div>
-                <h3 className='text-center text-slate-400'>Punya akun TiketKita? <span className='font-bold text-teal-400'>Login</span></h3>
+                <h3 className='text-center text-slate-400'>Punya akun TiketKita? <span className='font-bold text-teal-400 cursor-pointer' onClick={() => {
+                    router.push('/login');
+                }}>Login</span></h3>
 
                 <form onSubmit={registerHandler.bind(this)} >
                     <input name='username' type="text" className='input-create' placeholder='Username' onChange={fieldHandler.bind(this)} />

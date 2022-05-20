@@ -104,6 +104,9 @@ function Detail() {
                             <h3 className="font-bold text-lg">Rp{!posts.price ? posts.price : makeRupiah(posts.price)}</h3>
                         </div>
                         <button className="btn-primary w-full" onClick={() => {
+                            if (!localStorage.getItem("token")) {
+                                return router.push('/login');
+                            }
                             const overlay = document.querySelector('#overlay');
                             overlay.classList.toggle('hidden')
                             overlay.classList.toggle('flex')
@@ -120,9 +123,6 @@ function Detail() {
                         <div />
                         <h4 className="text-lg font-bold text-center">Buy Ticket</h4>
                         <svg className="h-6 w-6 cursor-pointer p-1 hover:bg-gray-300 rounded-full" id="close-modal" fill="currentColor" viewBox="0 0 20 20" onClick={() => {
-                            if (!localStorage.getItem("token")) {
-                                return router.push('/login');
-                            }
                             const overlay = document.querySelector('#overlay');
                             overlay.classList.toggle('hidden')
                             overlay.classList.toggle('flex')

@@ -1,7 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 function NavbarComponent() {
+  const router = useRouter();
 
   return (
     <>
@@ -26,7 +28,13 @@ function NavbarComponent() {
             <input type="text" className="border rounded-full pl-2 mx-3 w-96 hidden lg:inline" placeholder="Location" />
             <button className="btn-primary mx-2">Search</button>
           </div>
-          <Image src='/Profile.png' height={50} width={50} className="cursor-pointer" />
+          <Image src='/Plus.png' height={40} width={40} className="cursor-pointer" onClick={() => {
+            if (!localStorage.getItem('token')) {
+              router.push('/login');
+            } else {
+              router.push('/create');
+            }
+          }} />
         </div>
       </div>
       <div className="bg-teal-600 h-7 mb-5 "></div>

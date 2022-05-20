@@ -65,7 +65,9 @@ function Login() {
                         <button type='submit' className='btn-primary w-full mb-5 disabled:bg-teal-300 disabled:text-slate-50' disabled={isLoading}>Login</button>
                     </div>
                 </form>
-                <h3 className='text-center text-slate-400'>Baru di TiketKita? <span className='font-bold text-teal-400'>Daftar</span></h3>
+                <h3 className='text-center text-slate-400'>Baru di TiketKita? <span className='font-bold text-teal-400 cursor-pointer' onClick={() => {
+                    router.push('/register')
+                }}>Daftar</span></h3>
             </div>
         </>
     )
