@@ -1,6 +1,7 @@
 import Image from "next/image"
 import { useRouter } from "next/router";
 import { useEffect, useState } from 'react';
+import HeadApp from "../../components/HeadApp";
 import moment from 'moment';
 import 'moment/locale/id';
 
@@ -69,6 +70,7 @@ function Detail() {
 
     return (
         <div className='container mx-auto px-10'>
+            <HeadApp title={posts.name} />
             <h2 className="font-bold text-xl my-3 lg:hidden">{posts.name}</h2>
             <div className="lg:grid lg:grid-cols-3">
                 <div className='mb-5 lg:col-span-2'>

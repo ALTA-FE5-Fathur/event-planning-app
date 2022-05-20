@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
+import HeadApp from '../components/HeadApp';
 
 function Login() {
     const [fields, setFields] = useState({
@@ -51,6 +52,7 @@ function Login() {
 
     return (
         <>
+            <HeadApp title="Login" />
             <div className='container mx-auto px-12 sm:px-24 md:px-[180px] lg:px-[320px] xl:px-[440px] 2xl:px-[550px]'>
                 {message && <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
                     <span className="block sm:inline">{message}</span>
